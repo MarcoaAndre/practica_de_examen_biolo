@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biología 12° — Guía de Examen</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --soil-900:#1b2a1c;
+  --soil-800:#243523;
+  --moss-700:#2f4a30;
+  --cream-100:#f4efe2;
+  --cream-50:#faf7ee;
+  --amber-500:#c97c3d;
+  --amber-300:#e3a563;
+  --water-600:#2c4a5e;
+  --water-400:#5b87a0;
+  --lime-400:#9cc23e;
+  --rust-600:#a8472f;
+  --ink:#1b2a1c;
+  --line: rgba(27,42,28,0.14);
+  --shadow: 0 10px 30px -12px rgba(27,42,28,0.25);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Source Sans 3', sans-serif;
+  background:var(--cream-50);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{ background:var(--lime-400); color:var(--soil-900); }
+
+h1,h2,h3,h4{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--soil-900);
+  letter-spacing:-0.01em;
+}
+
+.mono{
+  font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.02em;
+}
+
+a{color:inherit;}
+
+/* ===================== LAYOUT SHELL ===================== */
+
+.app{
+  display:grid;
+  grid-template-columns: 230px 1fr;
+  min-height:100vh;
+}
+
+@media (max-width: 880px){
+  .app{ grid-template-columns: 1fr; }
+}
+
+/* ===================== SIDEBAR ===================== */
+
+.sidebar{
+  background:var(--soil-900);
+  color:var(--cream-100);
+  position:sticky;
+  top:0;
+  height:100vh;
+  padding:28px 22px;
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  overflow-y:auto;
+  border-right:1px solid rgba(244,239,226,0.08);
+}
+
+@media (max-width: 880px){
+  .sidebar{ position:relative; height:auto; }
+}
+
+.brand{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.brand .mark{
+  width:34px; height:34px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--lime-400), var(--moss-700) 70%);
+  margin-bottom:8px;
+  position:relative;
+}
+.brand .mark::after{
+  content:'';
+  position:absolute;
+  inset:8px;
+  border-radius:50%;
+  border:1.5px dashed rgba(244,239,226,0.5);
+}
+
+.brand h1{
+  color:var(--cream-50);
+  font-size:1.05rem;
+  line-height:1.25;
+}
+.brand p{
+  font-size:0.72rem;
+  color:rgba(244,239,226,0.55);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+
+nav.toc{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-size:0.86rem;
+}
+
+nav.toc .group-label{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.65rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--amber-300);
+  margin:14px 0 6px;
+  padding-left:2px;
+}
+nav.toc .group-label:first-child{ margin-top:0; }
+
+nav.toc a{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  padding:7px 8px;
+  border-radius:6px;
+  text-decoration:none;
+  color:rgba(244,239,226,0.78);
+  transition: background 0.15s, color 0.15s, padding-left 0.15s;
+}
+nav.toc a:hover{
+  background:rgba(244,239,226,0.07);
+  color:var(--cream-50);
+  padding-left:12px;
+}
+nav.toc a .num{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem;
+  color:var(--lime-400);
+  flex-shrink:0;
+}
+
+.sidebar-footer{
+  margin-top:auto;
+  font-size:0.7rem;
+  color:rgba(244,239,226,0.4);
+  border-top:1px solid rgba(244,239,226,0.1);
+  padding-top:14px;
+  line-height:1.5;
+}
+
+/* ===================== MAIN ===================== */
+
+main{
+  min-width:0;
+}
+
+/* ----- HERO ----- */
+
+.hero{
+  position:relative;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(201,124,61,0.25), transparent 60%),
+    linear-gradient(180deg, var(--soil-900) 0%, var(--moss-700) 100%);
+  color:var(--cream-50);
+  padding:70px 56px 60px;
+  overflow:hidden;
+}
+
+@media (max-width: 640px){
+  .hero{ padding:50px 24px 40px; }
+}
+
+.hero .eyebrow{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.75rem;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  color:var(--lime-400);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.hero .eyebrow::before{
+  content:'';
+  width:7px; height:7px;
+  border-radius:50%;
+  background:var(--lime-400);
+  box-shadow:0 0 0 4px rgba(156,194,62,0.2);
+}
+
+.hero h1{
+  color:var(--cream-50);
+  font-size:clamp(2.1rem, 5vw, 3.6rem);
+  line-height:1.04;
+  max-width:13ch;
+  font-weight:600;
+}
+.hero h1 em{
+  font-style:italic;
+  color:var(--amber-300);
+  font-weight:500;
+}
+
+.hero .sub{
+  margin-top:18px;
+  max-width:46ch;
+  font-size:1.05rem;
+  color:rgba(244,239,226,0.75);
+}
+
+.hero .examcard{
+  margin-top:32px;
+  display:inline-flex;
+  gap:22px;
+  flex-wrap:wrap;
+  background:rgba(244,239,226,0.06);
+  border:1px solid rgba(244,239,226,0.14);
+  border-radius:12px;
+  padding:16px 20px;
+  backdrop-filter: blur(4px);
+}
+.hero .examcard div{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.hero .examcard .k{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.64rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:rgba(244,239,226,0.5);
+}
+.hero .examcard .v{
+  font-size:0.92rem;
+  font-weight:600;
+  color:var(--cream-50);
+}
+
+/* Flow diagram signature element */
+.flowviz{
+  margin-top:46px;
+  display:flex;
+  align-items:center;
+  gap:0;
+  flex-wrap:wrap;
+}
+.flow-node{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  min-width:84px;
+}
+.flow-node .dot{
+  width:46px; height:46px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.3rem;
+  border:1.5px solid rgba(244,239,226,0.3);
+  background:rgba(244,239,226,0.05);
+}
+.flow-node .label{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.66rem;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  color:rgba(244,239,226,0.6);
+  text-align:center;
+}
+.flow-node .pct{
+  font-size:0.7rem;
+  color:var(--lime-400);
+  font-weight:600;
+}
+.flow-arrow{
+  flex:1;
+  min-width:30px;
+  height:1.5px;
+  background:repeating-linear-gradient(90deg, rgba(244,239,226,0.4) 0 6px, transparent 6px 11px);
+  position:relative;
+  margin:0 4px;
+  align-self:center;
+  margin-top:-20px;
+}
+.flow-arrow::after{
+  content:'▸';
+  position:absolute;
+  right:-2px; top:50%;
+  transform:translateY(-55%);
+  color:rgba(244,239,226,0.5);
+  font-size:0.7rem;
+}
+.flow-arrow .heatloss{
+  position:absolute;
+  top:14px; left:50%;
+  transform:translateX(-50%);
+  font-size:0.6rem;
+  font-family:'JetBrains Mono', monospace;
+  color:var(--rust-600);
+  background:rgba(168,71,47,0.12);
+  padding:2px 6px;
+  border-radius:4px;
+  white-space:nowrap;
+}
+
+/* ----- SECTIONS ----- */
+
+.section{
+  padding:54px 56px;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top: 20px;
+}
+@media (max-width: 640px){
+  .section{ padding:38px 24px; }
+}
+
+.section.tinted{ background:var(--cream-100); }
+
+.section-head{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:30px;
+}
+.section-head .si{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.85rem;
+  color:var(--cream-50);
+  background:var(--moss-700);
+  border-radius:8px;
+  padding:6px 10px;
+  flex-shrink:0;
+  margin-top:4px;
+}
+.section-head.amber .si{ background:var(--amber-500); }
+.section-head.water .si{ background:var(--water-600); }
+.section-head.rust .si{ background:var(--rust-600); }
+
+.section-head h2{
+  font-size:clamp(1.5rem, 3vw, 2.1rem);
+  line-height:1.15;
+}
+.section-head .tag{
+  display:block;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--amber-500);
+  margin-bottom:6px;
+}
+
+.lead{
+  font-size:1.05rem;
+  color:var(--soil-800);
+  max-width:64ch;
+  margin-bottom:28px;
+}
+
+/* ----- definition cards ----- */
+
+.grid{
+  display:grid;
+  gap:16px;
+}
+.grid.cols-3{ grid-template-columns:repeat(3, 1fr); }
+.grid.cols-2{ grid-template-columns:repeat(2, 1fr); }
+@media (max-width:880px){
+  .grid.cols-3, .grid.cols-2{ grid-template-columns:1fr; }
+}
+
+.card{
+  background:var(--cream-50);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:20px 22px;
+  box-shadow: var(--shadow);
+}
+.section.tinted .card{ background:#fff; }
+
+.card h3{
+  font-size:1.05rem;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.card h3 .ic{ font-size:1.2rem; }
+.card p, .card li{
+  font-size:0.92rem;
+  color:var(--soil-800);
+}
+.card ul{ padding-left:1.1em; margin-top:6px; }
+.card li{ margin-bottom:4px; }
+
+.card.accent-amber{ border-top:3px solid var(--amber-500); }
+.card.accent-water{ border-top:3px solid var(--water-600); }
+.card.accent-moss{ border-top:3px solid var(--moss-700); }
+.card.accent-rust{ border-top:3px solid var(--rust-600); }
+.card.accent-lime{ border-top:3px solid var(--lime-400); }
+
+/* ----- trophic pyramid ----- */
+
+.pyramid-wrap{
+  display:flex;
+  justify-content:center;
+  margin:36px 0;
+}
+.pyramid{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:100%;
+  max-width:560px;
+}
+.pyr-level{
+  width:100%;
+  text-align:center;
+  padding:14px 16px;
+  font-size:0.88rem;
+  font-weight:600;
+  color:var(--cream-50);
+  position:relative;
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0% 100%);
+  margin-bottom:-1px;
+}
+.pyr-level .pyr-detail{
+  display:block;
+  font-weight:400;
+  font-size:0.74rem;
+  margin-top:3px;
+  opacity:0.85;
+}
+.pyr-level.l1{ background:var(--rust-600); width:42%; clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);}
+.pyr-level.l2{ background:#c25a3a; width:58%; clip-path:polygon(6% 0,94% 0,90% 100%,10% 100%);}
+.pyr-level.l3{ background:var(--amber-500); width:74%; clip-path:polygon(5% 0,95% 0,91% 100%,9% 100%);}
+.pyr-level.l4{ background:var(--lime-400); color:var(--soil-900); width:88%; clip-path:polygon(4% 0,96% 0,93% 100%,7% 100%);}
+.pyr-level.l5{ background:var(--moss-700); width:100%; clip-path:polygon(2% 0,98% 0,96% 100%,4% 100%);}
+
+.pyr-side-note{
+  text-align:center;
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.72rem;
+  color:var(--rust-600);
+  margin-top:10px;
+}
+
+/* ----- diezmo / 10% rule strip ----- */
+
+.diezmo{
+  display:flex;
+  align-items:center;
+  gap:0;
+  margin:30px 0;
+  overflow-x:auto;
+  padding-bottom:8px;
+}
+.diezmo-step{
+  flex-shrink:0;
+  text-align:center;
+  min-width:110px;
+}
+.diezmo-step .box{
+  border:2px solid var(--moss-700);
+  border-radius:10px;
+  padding:14px 10px;
+  background:var(--cream-50);
+}
+.diezmo-step .box .kcal{
+  font-family:'JetBrains Mono', monospace;
+  font-weight:700;
+  font-size:1rem;
+  color:var(--moss-700);
+}
+.diezmo-step .name{
+  margin-top:8px;
+  font-size:0.78rem;
+  font-weight:600;
+}
+.diezmo-arrow{
+  flex-shrink:0;
+  font-size:0.7rem;
+  color:var(--rust-600);
+  font-family:'JetBrains Mono', monospace;
+  padding:0 6px;
+  white-space:nowrap;
+}
+
+/* ----- law cards (termodinámica) ----- */
+
+.law-card{
+  background:var(--soil-900);
+  color:var(--cream-100);
+  border-radius:14px;
+  padding:26px 28px;
+  position:relative;
+  overflow:hidden;
+}
+.law-card::before{
+  content:attr(data-num);
+  position:absolute;
+  top:-10px; right:6px;
+  font-family:'Fraunces', serif;
+  font-size:5.5rem;
+  font-weight:700;
+  color:rgba(244,239,226,0.06);
+  line-height:1;
+}
+.law-card h3{
+  color:var(--cream-50);
+  font-size:1.15rem;
+  margin-bottom:10px;
+}
+.law-card p{ font-size:0.92rem; color:rgba(244,239,226,0.8); }
+.law-card .example{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(244,239,226,0.15);
+  font-size:0.82rem;
+  color:var(--lime-400);
+  font-family:'JetBrains Mono', monospace;
+}
+
+/* ----- cycle diagram block ----- */
+
+.cycle-block{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--cream-50);
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.section.tinted .cycle-block{ background:#fff; }
+
+.cycle-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:18px 22px;
+  cursor:default;
+}
+.cycle-head .cycle-icon{
+  width:40px;height:40px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem;
+  flex-shrink:0;
+}
+.cycle-head h3{ font-size:1.15rem; }
+.cycle-head .formula{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.78rem;
+  color:var(--soil-800);
+  opacity:0.7;
+  margin-left:auto;
+  text-align:right;
+}
+.cycle-body{
+  padding:0 22px 22px;
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap:24px;
+}
+@media (max-width:760px){
+  .cycle-body{ grid-template-columns:1fr; }
+}
+.cycle-body ul{
+  padding-left:1.2em;
+  font-size:0.9rem;
+  color:var(--soil-800);
+}
+.cycle-body li{ margin-bottom:7px; }
+.cycle-body li strong{ color:var(--soil-900); }
+
+.cycle-side{
+  background:var(--cream-100);
+  border-radius:10px;
+  padding:14px 16px;
+  font-size:0.85rem;
+  height:fit-content;
+}
+.section.tinted .cycle-side{ background:var(--cream-50); }
+.cycle-side .side-title{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.68rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--amber-500);
+  margin-bottom:8px;
+}
+
+/* ----- comparison table ----- */
+
+.table-wrap{
+  overflow-x:auto;
+  border-radius:12px;
+  border:1px solid var(--line);
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.88rem;
+  background:var(--cream-50);
+}
+.section.tinted table{ background:#fff; }
+th{
+  background:var(--soil-900);
+  color:var(--cream-50);
+  text-align:left;
+  padding:12px 16px;
+  font-weight:600;
+  font-size:0.8rem;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+td{
+  padding:12px 16px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top;
+}
+tr:last-child td{ border-bottom:none; }
+tr:hover td{ background:rgba(156,194,62,0.06); }
+td.cause{ color:var(--rust-600); font-weight:600; }
+td.org{ font-weight:600; }
+td.tag-prod{ color:var(--moss-700); font-weight:700; }
+td.tag-cons{ color:var(--amber-500); font-weight:700; }
+td.tag-desc{ color:var(--water-600); font-weight:700; }
+
+/* ----- organism classifier ----- */
+.classify-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+@media (max-width:640px){ .classify-grid{ grid-template-columns:repeat(2,1fr); } }
+.classify-item{
+  background:var(--cream-50);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 14px;
+  text-align:center;
+}
+.section.tinted .classify-item{ background:#fff; }
+.classify-item .organism{ font-weight:600; font-size:0.88rem; margin-bottom:4px;}
+.classify-item .role{
+  font-family:'JetBrains Mono', monospace;
+  font-size:0.66rem;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:6px;
+  display:inline-block;
+}
+.role.prod{ background:rgba(47,74,48,0.12); color:var(--moss-700); }
+.role.cons{ background:rgba(201,124,61,0.14); color:var(--amber-500); }
+.role.desc{ background:rgba(44,74,94,0.12); color:var(--water-600); }
+
+/* ----- callout / formula box ----- */
+.callout{
+  border-left:4px solid var(--amber-500);
+  background:var(--cream-100);
+  border-radius:0 10px 10px 0;
+  padding:16px 20px;
+  font-size:0.92rem;
+  margin:18px 0;
+}
+.section.tinted .callout{ background:#fff; }
+.callout strong{ color:var(--soil-900); }
+
+.formula-box{
+  font-family:'JetBrains Mono', monospace;
+  background:var(--soil-900);
+  color:var(--lime-400);
+  border-radius:10px;
+  padding:16px 20px;
+  font-size:0.92rem;
+  margin:16px 0;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+/* ----- key terms inline ----- */
+.kterm{
+  background:rgba(156,194,62,0.18);
+  padding:1px 6px;
+  border-radius:4px;
+  font-weight:600;
+}
+
+/* ----- quiz strip (exam likely Qs) ----- */
+.quiz-card{
+  background:var(--cream-50);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px 20px;
+  margin-bottom:12px;
+}
+.section.tinted .quiz-card{ background:#fff; }
+.quiz-card .q{ font-weight:600; margin-bottom:8px; font-size:0.95rem;}
+.quiz-card .a{
+  font-size:0.88rem;
+  color:var(--moss-700);
+  font-weight:600;
+  display:flex;
+  gap:8px;
+  align-items:baseline;
+}
+.quiz-card .a::before{ content:'✓'; }
+
+/* ----- chip lists ----- */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.chip{
+  font-size:0.8rem;
+  padding:5px 12px;
+  border-radius:20px;
+  background:var(--cream-100);
+  border:1px solid var(--line);
+  font-weight:500;
+}
+.section.tinted .chip{ background:#fff; }
+
+/* ----- footer ----- */
+footer{
+  background:var(--soil-900);
+  color:rgba(244,239,226,0.55);
+  padding:34px 56px;
+  font-size:0.82rem;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+}
+@media (max-width:640px){ footer{ padding:24px; } }
+
+/* back to top */
+.totop{
+  position:fixed;
+  bottom:24px; right:24px;
+  background:var(--soil-900);
+  color:var(--cream-50);
+  width:42px; height:42px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  text-decoration:none;
+  box-shadow:var(--shadow);
+  font-size:1rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.2s;
+  z-index:50;
+}
+.totop.show{ opacity:1; pointer-events:auto; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR / TOC ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark"></div>
+      <h1>Guía de repaso<br>Biología 12°</h1>
+      <p>I Prueba — II Periodo 2026</p>
+    </div>
+
+    <nav class="toc">
+      <span class="group-label">Tema 2 · Indicador 3</span>
+      <a href="#impacto-humano" data-target="impacto-humano"><span class="num">01</span> Acciones humanas</a>
+      <a href="#desastres" data-target="desastres"><span class="num">02</span> Causas y consecuencias</a>
+      <a href="#cultura-ambiental" data-target="cultura-ambiental"><span class="num">03</span> Cultura ambiental</a>
+
+      <span class="group-label">Tema 3 · Indicador 1</span>
+      <a href="#ciclos-intro" data-target="ciclos-intro"><span class="num">04</span> Reciclaje de nutrientes</a>
+      <a href="#ciclo-carbono" data-target="ciclo-carbono"><span class="num">05</span> Ciclo del carbono</a>
+      <a href="#ciclo-nitrogeno" data-target="ciclo-nitrogeno"><span class="num">06</span> Ciclo del nitrógeno</a>
+      <a href="#ciclo-fosforo" data-target="ciclo-fosforo"><span class="num">07</span> Ciclo del fósforo</a>
+      <a href="#ciclo-azufre" data-target="ciclo-azufre"><span class="num">08</span> Ciclo del azufre</a>
+      <a href="#ciclo-oxigeno" data-target="ciclo-oxigeno"><span class="num">09</span> Ciclo del oxígeno</a>
+
+      <span class="group-label">Repaso rápido</span>
+      <a href="#niveles-troficos" data-target="niveles-troficos"><span class="num">★</span> Niveles tróficos</a>
+      <a href="#termodinamica" data-target="termodinamica"><span class="num">★</span> Leyes de energía</a>
+      <a href="#preguntas-clave" data-target="preguntas-clave"><span class="num">★</span> Posibles preguntas</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      Basado en Tema 2 (Transferencia de materia y energía) y Tema 3 (Ciclos biogeoquímicos).<br><br>
+      CTP Aserrí · Prof. Alexander Castro Rivas
+    </div>
+  </aside>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="eyebrow">Examen — lunes 22 de junio · 7:00–9:00</div>
+      <h1>La energía fluye,<br>la materia <em>se recicla</em>.</h1>
+      <p class="sub">Resumen enfocado en lo que entra al examen: las acciones humanas que desestabilizan las relaciones tróficas y los ciclos biogeoquímicos del carbono, nitrógeno, fósforo y azufre.</p>
+
+      <div class="examcard">
+        <div><span class="k">Tema 2 · pág 21–28</span><span class="v">Estabilidad de relaciones tróficas</span></div>
+        <div><span class="k">Tema 3 · pág 1–9</span><span class="v">Ciclos biogeoquímicos</span></div>
+        <div><span class="k">Nivel</span><span class="v">Duodécimo</span></div>
+      </div>
+
+      <!-- signature flow diagram -->
+      <div class="flowviz">
+        <div class="flow-node">
+          <div class="dot">☀️</div>
+          <div class="label">Sol</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node">
+          <div class="dot">🌿</div>
+          <div class="label">Productor</div>
+          <div class="pct">100%</div>
+        </div>
+        <div class="flow-arrow"><span class="heatloss">−90% calor</span></div>
+        <div class="flow-node">
+          <div class="dot">🐇</div>
+          <div class="label">Herbívoro</div>
+          <div class="pct">10%</div>
+        </div>
+        <div class="flow-arrow"><span class="heatloss">−90% calor</span></div>
+        <div class="flow-node">
+          <div class="dot">🦊</div>
+          <div class="label">Carnívoro</div>
+          <div class="pct">1%</div>
+        </div>
+        <div class="flow-arrow"><span class="heatloss">−90% calor</span></div>
+        <div class="flow-node">
+          <div class="dot">🦅</div>
+          <div class="label">Tope</div>
+          <div class="pct">0.1%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NIVELES TRÓFICOS (repaso rápido) ============ -->
+    <section class="section" id="niveles-troficos">
+      <div class="section-head">
+        <span class="si mono">REF</span>
+        <div>
+          <span class="tag">Repaso rápido</span>
+          <h2>Niveles tróficos y pirámide alimenticia</h2>
+        </div>
+      </div>
+      <p class="lead">Cada paso ascendente en la pirámide pierde organismos, biomasa y energía. Esto se llama <span class="kterm">ley del diezmo ecológico</span>: solo el 10% de la energía de un nivel pasa al siguiente.</p>
+
+      <div class="pyramid-wrap">
+        <div class="pyramid">
+          <div class="pyr-level l1">Consumidor terciario<span class="pyr-detail">carnívoro de carnívoros · ej. águila, tigre</span></div>
+          <div class="pyr-level l2">Consumidor secundario<span class="pyr-detail">carnívoro · ej. lobo, araña, serpiente</span></div>
+          <div class="pyr-level l3">Consumidor primario<span class="pyr-detail">herbívoro · ej. saltamontes, conejo</span></div>
+          <div class="pyr-level l4">Productor<span class="pyr-detail">autótrofo / fotosintético · ej. plantas, algas</span></div>
+          <div class="pyr-level l5">Descomponedores<span class="pyr-detail">saprobiontes y necrófagos · hongos, bacterias, buitres</span></div>
+        </div>
+        <p class="pyr-side-note">▲ menos organismos y energía disponible en cada nivel ascendente</p>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card accent-moss">
+          <h3><span class="ic">🌱</span>Productores</h3>
+          <p>Autótrofos o fotosintéticos. Usan luz solar y sustancias inorgánicas para producir su propio alimento (glucosa).</p>
+          <ul><li>Plantas, algas, cianobacterias</li><li>Protistas como la euglena</li><li>Bacterias quimiosintéticas</li></ul>
+        </div>
+        <div class="card accent-amber">
+          <h3><span class="ic">🦌</span>Consumidores</h3>
+          <p>Heterótrofos: no fabrican su alimento, se alimentan de otros organismos.</p>
+          <ul>
+            <li><strong>Primario</strong> (herbívoro): jirafa, saltamontes</li>
+            <li><strong>Secundario</strong> (carnívoro): lobo, araña</li>
+            <li><strong>Terciario</strong>: tigre, león, humano</li>
+          </ul>
+        </div>
+        <div class="card accent-water">
+          <h3><span class="ic">🍄</span>Descomponedores</h3>
+          <p>Transforman materia orgánica en inorgánica, cerrando el ciclo de la materia.</p>
+          <ul>
+            <li><strong>Saprobiontes:</strong> hongos y bacterias que desintegran organismos muertos</li>
+            <li><strong>Necrófagos:</strong> carroñeros — buitres, lombrices, moscas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Cadena vs. red trófica:</strong> una cadena alimenticia es una sola línea de transferencia de energía (planta → saltamontes → sapo → culebra). Una <strong>red trófica</strong> se forma cuando varias cadenas comparten eslabones y se entrelazan.
+      </div>
+    </section>
+
+    <!-- ============ TERMODINÁMICA ============ -->
+    <section class="section tinted" id="termodinamica">
+      <div class="section-head amber">
+        <span class="si mono">REF</span>
+        <div>
+          <span class="tag">Repaso rápido</span>
+          <h2>Leyes de la energía</h2>
+        </div>
+      </div>
+      <p class="lead">La energía en un ecosistema fluye en <span class="kterm">una sola dirección</span>: entra como luz solar y sale como calor. Nunca se recicla, a diferencia de la materia.</p>
+
+      <div class="grid cols-2">
+        <div class="law-card" data-num="1">
+          <h3>1ª Ley de la termodinámica</h3>
+          <p>La energía se transforma de una clase a otra, pero <strong>no se crea ni se destruye</strong>.</p>
+          <div class="example">luz solar → materia orgánica → calor → movimiento → electricidad...</div>
+        </div>
+        <div class="law-card" data-num="2">
+          <h3>2ª Ley de la termodinámica</h3>
+          <p>Al pasar de una forma de energía a otra siempre hay <strong>pérdida de energía en forma de calor</strong>. El flujo de energía es irreversible y unidireccional.</p>
+          <div class="example">→ entropía: el desorden de un sistema siempre aumenta</div>
+        </div>
+        <div class="law-card" data-num="3">
+          <h3>Ley de Lavoisier (conservación de la masa)</h3>
+          <p>En un sistema cerrado, la materia <strong>no se crea ni se destruye</strong>, solo cambia de forma. Por eso la materia se recicla en los ciclos biogeoquímicos.</p>
+        </div>
+        <div class="law-card" data-num="%">
+          <h3>Ley del diezmo ecológico</h3>
+          <p>Solo el <strong>10%</strong> de la energía de un nivel trófico pasa al siguiente nivel. El 90% se pierde como calor. Por eso las cadenas alcanzan máximo 4 o 5 niveles.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:24px; font-weight:600; font-size:0.9rem; color:var(--soil-800);">Ejemplo numérico del diezmo ecológico:</p>
+      <div class="diezmo">
+        <div class="diezmo-step"><div class="box"><span class="kcal">10,000</span></div><div class="name">🌿 Productor</div></div>
+        <div class="diezmo-arrow">×10%→</div>
+        <div class="diezmo-step"><div class="box"><span class="kcal">1,000</span></div><div class="name">🐇 Herbívoro</div></div>
+        <div class="diezmo-arrow">×10%→</div>
+        <div class="diezmo-step"><div class="box"><span class="kcal">100</span></div><div class="name">🦊 Carnívoro</div></div>
+        <div class="diezmo-arrow">×10%→</div>
+        <div class="diezmo-step"><div class="box"><span class="kcal">10</span></div><div class="name">🦅 Tope</div></div>
+      </div>
+    </section>
+
+    <!-- ============ TEMA 2 — ACCIONES HUMANAS ============ -->
+    <section class="section" id="impacto-humano">
+      <div class="section-head rust">
+        <span class="si mono">T2·I3</span>
+        <div>
+          <span class="tag">Tema 2 — Indicador 3 · pág. 21–28</span>
+          <h2>Acciones humanas y estabilidad de las relaciones tróficas</h2>
+        </div>
+      </div>
+      <p class="lead">El indicador pide <strong>evaluar las implicaciones</strong> de las acciones humanas: identificar qué desastres provoca el ser humano, explicar sus causas y consecuencias, y ejemplificar cómo prevenirlas.</p>
+
+      <div class="callout">
+        <strong>Lo que debes saber hacer:</strong> identificar las acciones humanas que desestabilizan las relaciones tróficas, explicar sus implicaciones, y ejemplificar formas de prevenir las consecuencias negativas sobre el ambiente, la salud humana y los ecosistemas.
+      </div>
+
+      <div class="grid cols-2" style="margin-top:20px;">
+        <div class="card accent-rust">
+          <h3><span class="ic">🧨</span>¿Cómo desestabiliza el hombre las cadenas tróficas?</h3>
+          <p>Pregunta reflexiva clave (pág. 23). Piensa en orden de impacto ecológico: deforestación, caza/pesca excesiva, contaminación de suelos y aguas, introducción de especies, quema de combustibles fósiles — cada una rompe un eslabón de la cadena y afecta a los niveles que dependen de él.</p>
+        </div>
+        <div class="card accent-moss">
+          <h3><span class="ic">🛡️</span>¿Cómo prevenir las consecuencias negativas?</h3>
+          <p>Pregunta reflexiva clave (pág. 23). Respuesta tipo: leyes de protección ambiental, educación y cultura ambiental, energías renovables, manejo responsable de residuos, áreas protegidas y consumo consciente — prevenir antes de que el daño sea irreversible.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DESASTRES TABLE ============ -->
+    <section class="section tinted" id="desastres">
+      <div class="section-head rust">
+        <span class="si mono">⚠</span>
+        <div>
+          <span class="tag">Seis desastres a dominar</span>
+          <h2>Causas, consecuencias y soluciones</h2>
+        </div>
+      </div>
+      <p class="lead">Esta es la tabla más probable de aparecer en preguntas de desarrollo. Memoriza al menos una causa, una consecuencia y una solución de cada fila.</p>
+
+      <div class="callout" style="border-left-color:var(--rust-600);">
+        <strong>⚠ Peso real en el examen:</strong> según la guía, <strong>entre 12 y 16 preguntas del examen</strong> vienen de este cuadro de desastres naturales (Guía 2, pág. 24, resumido en pág. 23). Es la sección de mayor peso de todo el examen — domínala primero.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Desastre / fenómeno</th><th>Causa principal</th><th>Consecuencias</th><th>Soluciones</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="org">🌡️ Sobrecalentamiento global</td>
+              <td class="cause">Emisión de gases de efecto invernadero (CO₂, metano) por quema de combustibles fósiles</td>
+              <td>Derretimiento de glaciares, aumento del nivel del mar, olas de calor mortales</td>
+              <td>Energías renovables (solar, eólica), reforestación masiva</td>
+            </tr>
+            <tr>
+              <td class="org">🌪️ Cambio climático</td>
+              <td class="cause">Variaciones del clima aceleradas por la actividad industrial humana</td>
+              <td>Sequías prolongadas, huracanes más intensos, alteración de ciclos agrícolas</td>
+              <td>Acuerdo de París, reducir huella de carbono individual y corporativa</td>
+            </tr>
+            <tr>
+              <td class="org">🎣 Sobreexplotación de especies</td>
+              <td class="cause">Caza y pesca excesiva, comercio ilegal de fauna y flora silvestre</td>
+              <td>Extinción de especies, desequilibrio en cadenas alimenticias, pérdida de biodiversidad</td>
+              <td>Santuarios protegidos, leyes estrictas contra el tráfico de vida silvestre</td>
+            </tr>
+            <tr>
+              <td class="org">🏭 Contaminación ambiental</td>
+              <td class="cause">Vertidos industriales, uso excesivo de plásticos, mala gestión de residuos</td>
+              <td>Enfermedades respiratorias, envenenamiento de fuentes de agua, suelos infértiles</td>
+              <td>Economía circular (reducir, reciclar, reutilizar), regular vertidos químicos</td>
+            </tr>
+            <tr>
+              <td class="org">🐍 Introducción de especies exóticas</td>
+              <td class="cause">Globalización, comercio de mascotas exóticas, transporte de mercancías</td>
+              <td>Desplazamiento de especies nativas, plagas agrícolas, destrucción de ecosistemas locales</td>
+              <td>Bioseguridad en fronteras, educación sobre tenencia responsable de mascotas</td>
+            </tr>
+            <tr>
+              <td class="org">☢️ Destrucción de la capa de ozono</td>
+              <td class="cause">Uso de CFC (clorofluorocarbonos) en aerosoles y refrigerantes</td>
+              <td>Aumento de radiación UV, cáncer de piel, daños oculares, afectación al fitoplancton</td>
+              <td>Protocolo de Montreal — prohibición total de sustancias agotadoras de ozono</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:20px; font-size:0.88rem; color:var(--soil-800);"><strong>Relacionado:</strong> el <span class="kterm">nitrógeno y fósforo de fertilizantes</span> que llegan a ríos y lagos provocan <span class="kterm">eutrofización</span> (florecimiento excesivo de algas que agota el oxígeno del agua y crea zonas muertas).</p>
+    </section>
+
+    <!-- ============ CULTURA AMBIENTAL ============ -->
+    <section class="section" id="cultura-ambiental">
+      <div class="section-head rust">
+        <span class="si mono">🌍</span>
+        <div>
+          <span class="tag">Para preguntas de desarrollo / ensayo</span>
+          <h2>¿Por qué importa la cultura ambiental?</h2>
+        </div>
+      </div>
+      <p class="lead">Si el examen pide explicar la frase <em>"la cultura ambiental es un bien que nos enriquece a todas las personas"</em>, estos cuatro argumentos son la base de la respuesta.</p>
+
+      <div class="grid cols-2">
+        <div class="card accent-moss">
+          <h3><span class="ic">🧭</span>Identidad y pertenencia</h3>
+          <p>Las expresiones culturales conectan a las personas con su territorio. No se cuida lo que no se ama, y no se ama lo que no se conoce culturalmente.</p>
+        </div>
+        <div class="card accent-amber">
+          <h3><span class="ic">📜</span>Transmisión de saberes ancestrales</h3>
+          <p>Permite que el conocimiento de generaciones pasadas (plantas medicinales, cultivo sostenible) no se pierda. Suele ser más amigable con el planeta.</p>
+        </div>
+        <div class="card accent-water">
+          <h3><span class="ic">🤝</span>Cohesión social y gobernanza</h3>
+          <p>La participación fomenta organización ciudadana. Cuando la sociedad participa en decisiones sobre su entorno, se reducen los conflictos socioambientales.</p>
+        </div>
+        <div class="card accent-rust">
+          <h3><span class="ic">⚖️</span>Ética y cambio de comportamiento</h3>
+          <p>Más allá de las leyes, la valoración cultural convierte el respeto por la biodiversidad en una norma moral compartida, con impacto a largo plazo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TEMA 3 INTRO ============ -->
+    <section class="section tinted" id="ciclos-intro">
+      <div class="section-head water">
+        <span class="si mono">T3·I1</span>
+        <div>
+          <span class="tag">Tema 3 — Indicador 1 · pág. 1–9</span>
+          <h2>Ciclos biogeoquímicos: la materia se recicla</h2>
+        </div>
+      </div>
+      <p class="lead">Mientras la <strong>energía</strong> fluye en una sola dirección y se pierde como calor, la <strong>materia</strong> (átomos de C, N, H, O, P, S) se recicla constantemente entre los seres vivos y el ambiente no vivo.</p>
+
+      <div class="formula-box">ciclo biogeoquímico = el recorrido de un elemento entre los organismos vivos y el ambiente abiótico</div>
+
+      <p class="lead" style="margin-top:24px;">Los <strong>6 elementos esenciales</strong> de las moléculas orgánicas: carbono, nitrógeno, hidrógeno, oxígeno, fósforo y azufre. Se almacenan en la atmósfera, el suelo, el agua, el subsuelo y los seres vivos.</p>
+
+      <div class="chips">
+        <span class="chip">🔵 Carbono — combustibles fósiles, CO₂</span>
+        <span class="chip">🟣 Nitrógeno — fertilizantes, NH₃, proteínas</span>
+        <span class="chip">🟠 Fósforo — único sin fase atmosférica</span>
+        <span class="chip">🟡 Azufre — sulfatos, lluvia ácida</span>
+        <span class="chip">⚪ Oxígeno — respiración, ozono (O₃), CFC</span>
+      </div>
+    </section>
+
+    <!-- ============ CICLO DEL CARBONO ============ -->
+    <section class="section" id="ciclo-carbono">
+      <div class="cycle-block">
+        <div class="cycle-head">
+          <div class="cycle-icon" style="background:rgba(44,74,94,0.12);">🌳</div>
+          <h3>Ciclo del carbono</h3>
+          <span class="formula">CO₂ ⇄ glucosa ⇄ CO₂</span>
+        </div>
+        <div class="cycle-body">
+          <ul>
+            <li>El <strong>CO₂ atmosférico</strong> es absorbido por organismos fotosintéticos, que lo usan para producir moléculas orgánicas.</li>
+            <li>Estas moléculas viajan por las <strong>cadenas alimenticias</strong>.</li>
+            <li>Los átomos de carbono se liberan de nuevo como CO₂ durante la <strong>respiración</strong>.</li>
+            <li>Procesos geológicos lentos (rocas sedimentarias, combustibles fósiles) almacenan carbono a largo plazo.</li>
+            <li>La quema de combustibles fósiles y la deforestación <strong>aumentan el CO₂</strong> atmosférico y afectan el clima y los océanos.</li>
+          </ul>
+          <div class="cycle-side">
+            <div class="side-title">Dato clave de examen</div>
+            La <strong>fotosíntesis</strong> fija el carbono (lo incorpora a la materia viva). La <strong>respiración</strong> lo devuelve a la atmósfera. Ambas mantienen el ciclo.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CICLO DEL NITRÓGENO ============ -->
+    <section class="section tinted" id="ciclo-nitrogeno">
+      <div class="cycle-block">
+        <div class="cycle-head">
+          <div class="cycle-icon" style="background:rgba(156,194,62,0.18);">🫛</div>
+          <h3>Ciclo del nitrógeno</h3>
+          <span class="formula">N₂ → NH₃ → NO₂/NO₃ → N₂</span>
+        </div>
+        <div class="cycle-body">
+          <ul>
+            <li>Componente esencial de <strong>proteínas y ADN</strong>.</li>
+            <li>Existe en la atmósfera como <strong>N₂ gaseoso</strong> (no aprovechable directamente por las plantas).</li>
+            <li><strong>Fijación del nitrógeno:</strong> bacterias en las raíces de leguminosas convierten N₂ en <strong>amoníaco (NH₃)</strong>, forma utilizable por las plantas.</li>
+            <li>Bacterias <strong>nitrificantes</strong> convierten el NH₃ en NO₂ y NO₃ (nitritos/nitratos) que la planta absorbe.</li>
+            <li>Bacterias <strong>desnitrificantes</strong> devuelven el nitrógeno a la atmósfera en forma de <strong>N₂ gaseoso</strong>, cerrando el ciclo.</li>
+            <li>El nitrógeno <strong>forma parte de los fertilizantes</strong> agrícolas — y es un <strong>nutriente limitante</strong> común en la naturaleza y la agricultura.</li>
+          </ul>
+          <div class="cycle-side">
+            <div class="side-title">Dato clave de examen</div>
+            Fertilizantes con nitrógeno y fósforo que llegan a ríos/lagos → <strong>eutrofización</strong> (florecimiento de algas).
+            <br><br>
+            <strong>NH₃ = amoníaco</strong> — no lo confundas con el nitrógeno gaseoso (N₂).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CICLO DEL FÓSFORO ============ -->
+    <section class="section" id="ciclo-fosforo">
+      <div class="cycle-block">
+        <div class="cycle-head">
+          <div class="cycle-icon" style="background:rgba(201,124,61,0.15);">🦴</div>
+          <h3>Ciclo del fósforo</h3>
+          <span class="formula">rocas fosfatadas → PO₄³⁻ → seres vivos</span>
+        </div>
+        <div class="cycle-body">
+          <ul>
+            <li>Se encuentra en <strong>ADN, fosfolípidos de membrana y ATP</strong>.</li>
+            <li>Es un ciclo <strong>lento</strong> — la mayor parte está en forma de ion <strong>fosfato (PO₄)</strong>.</li>
+            <li><strong>El fósforo es el único de los 5 elementos que no tiene una fase atmosférica</strong> (no circula como gas en el aire, a diferencia del C, N, O y S).</li>
+            <li>Es a menudo el <strong>nutriente limitante</strong> en ecosistemas acuáticos.</li>
+            <li>Las <strong>aves marinas</strong> lo excretan como <strong>guano</strong>, usado para fabricar fertilizantes.</li>
+            <li>El nitrógeno y fósforo de fertilizantes arrastrados a lagos/océanos → eutrofización → agotamiento de oxígeno → <strong>zonas muertas</strong>.</li>
+          </ul>
+          <div class="cycle-side">
+            <div class="side-title">Dato clave de examen</div>
+            <strong>El fósforo NO está en la atmósfera.</strong> Es la pregunta de "trampa" más común: si una opción dice que un elemento "se mueve por el aire" y la pregunta es sobre fósforo, esa opción es falsa.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CICLO DEL AZUFRE ============ -->
+    <section class="section tinted" id="ciclo-azufre">
+      <div class="cycle-block">
+        <div class="cycle-head">
+          <div class="cycle-icon" style="background:rgba(168,71,47,0.12);">🌋</div>
+          <h3>Ciclo del azufre</h3>
+          <span class="formula">SO₂ + H₂O → H₂SO₄ (lluvia ácida)</span>
+        </div>
+        <div class="cycle-body">
+          <ul>
+            <li>Las plantas lo <strong>asimilan</strong> del suelo para sus funciones vitales.</li>
+            <li>Pasa por la cadena alimenticia: planta → herbívoro → carnívoro.</li>
+            <li>Cuando los animales mueren, las <strong>bacterias convierten sus cuerpos en sulfatos (SO₄)</strong> mediante un proceso de <strong>descomposición</strong>.</li>
+            <li>Los sulfatos vuelven al suelo, donde las plantas los reutilizan.</li>
+            <li>Llega a la atmósfera como <strong>dióxido de azufre (SO₂)</strong>: volcanes, descomposición orgánica, acción humana.</li>
+            <li>Al combinarse con agua en la atmósfera forma <strong>ácido sulfúrico (H₂SO₄)</strong> → al precipitar se convierte en <strong>lluvia ácida</strong>.</li>
+          </ul>
+          <div class="cycle-side">
+            <div class="side-title">Dato clave de examen</div>
+            <strong>Sulfato = SO₄.</strong> Cuando los vegetales mueren, las bacterias también pueden liberar <strong>gas sulfhídrico</strong> en su descomposición.
+            <br><br>
+            Asocia siempre: <strong>azufre + agua = ácido sulfúrico = lluvia ácida.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CICLO DEL OXÍGENO ============ -->
+    <section class="section" id="ciclo-oxigeno">
+      <div class="cycle-block">
+        <div class="cycle-head">
+          <div class="cycle-icon" style="background:rgba(91,135,160,0.15);">💨</div>
+          <h3>Ciclo del oxígeno</h3>
+          <span class="formula">fotosíntesis ⇄ respiración</span>
+        </div>
+        <div class="cycle-body">
+          <ul>
+            <li>Las <strong>plantas producen oxígeno</strong> durante la fotosíntesis y lo liberan al aire.</li>
+            <li>Los demás seres vivos <strong>respiran ese oxígeno</strong>; pasa a sus células y tejidos.</li>
+            <li>Al ser exhalado, regresa al aire en forma de <strong>dióxido de carbono</strong> (unión de carbono + O₂).</li>
+            <li><strong>Las plantas absorben ese dióxido de carbono</strong> y lo vuelven a usar en la fotosíntesis, cerrando el ciclo.</li>
+            <li>Parte del O₂ atmosférico forma <strong>ozono (O₃)</strong>, que absorbe radiación UV.</li>
+          </ul>
+          <div class="cycle-side">
+            <div class="side-title">Dato clave de examen</div>
+            El oxígeno conecta directamente con el <strong>ciclo del carbono</strong>: fotosíntesis y respiración son las dos caras de ambos ciclos.
+            <br><br>
+            <strong>Desventaja del O₃ (ozono):</strong> los gases <strong>clorofluorocarbonados (CFC)</strong> pueden destruir la capa de ozono.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLASIFICADOR DE ORGANISMOS ============ -->
+    <section class="section tinted">
+      <div class="section-head">
+        <span class="si mono">REF</span>
+        <div>
+          <span class="tag">Práctica de clasificación</span>
+          <h2>Productor, consumidor o descomponedor</h2>
+        </div>
+      </div>
+      <p class="lead">Del material de clase — clasificación rápida de organismos comunes en el examen.</p>
+      <div class="classify-grid">
+        <div class="classify-item"><div class="organism">Pájaro carpintero</div><span class="role cons">Consumidor</span></div>
+        <div class="classify-item"><div class="organism">Hipopótamo</div><span class="role cons">Consumidor</span></div>
+        <div class="classify-item"><div class="organism">Orquídea</div><span class="role prod">Productor</span></div>
+        <div class="classify-item"><div class="organism">Hongos</div><span class="role desc">Descomponedor</span></div>
+        <div class="classify-item"><div class="organism">Alga</div><span class="role prod">Productor</span></div>
+        <div class="classify-item"><div class="organism">Jaguar</div><span class="role cons">Consumidor</span></div>
+        <div class="classify-item"><div class="organism">Escarabajo</div><span class="role desc">Descomponedor</span></div>
+        <div class="classify-item"><div class="organism">Oso panda</div><span class="role cons">Consumidor</span></div>
+        <div class="classify-item"><div class="organism">Bacterias</div><span class="role desc">Descomponedor</span></div>
+      </div>
+    </section>
+
+    <!-- ============ POSIBLES PREGUNTAS ============ -->
+    <section class="section" id="preguntas-clave">
+      <div class="section-head amber">
+        <span class="si mono">✓</span>
+        <div>
+          <span class="tag">Última repasada antes del examen</span>
+          <h2>Preguntas tipo y respuestas clave</h2>
+        </div>
+      </div>
+
+      <div class="quiz-card">
+        <div class="q">¿Por qué el número de plantas debe ser mayor que el de herbívoros?</div>
+        <div class="a">Porque solo el 10% de la energía pasa al siguiente nivel (ley del diezmo); se necesita una gran base para sostener a los niveles superiores.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué diferencia hay entre cadena trófica y red trófica?</div>
+        <div class="a">La cadena es una sola secuencia lineal; la red se forma cuando varias cadenas se entrelazan compartiendo eslabones.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué elemento NO tiene una fase gaseosa importante en su ciclo?</div>
+        <div class="a">El fósforo — su ciclo es lento y se mueve principalmente como ion fosfato (PO₄) en suelo, agua y rocas.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué causa la eutrofización?</div>
+        <div class="a">El exceso de nitrógeno y fósforo de fertilizantes que llega a ríos y lagos, provocando crecimiento excesivo de algas y agotamiento de oxígeno.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué proceso devuelve el carbono orgánico a la atmósfera como CO₂?</div>
+        <div class="a">La respiración celular (de plantas, animales y descomponedores).</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Cuál de los 5 elementos NO circula por la atmósfera?</div>
+        <div class="a">El fósforo. Es el único ciclo sin fase gaseosa — se mueve como ion fosfato (PO₄) entre rocas, suelo, agua y seres vivos.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué les sucede a los cuerpos de los animales cuando mueren, en el ciclo del azufre?</div>
+        <div class="a">Las bacterias los convierten en sulfatos (SO₄) mediante un proceso de descomposición, devolviendo el azufre al suelo.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué gases destruyen la capa de ozono?</div>
+        <div class="a">Los gases clorofluorocarbonados (CFC), usados en aerosoles y refrigerantes — prohibidos por el Protocolo de Montreal.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué bacterias intervienen en el ciclo del nitrógeno y qué hace cada una?</div>
+        <div class="a">Las fijadoras convierten N₂ en amoníaco (NH₃); las nitrificantes lo transforman en nitritos/nitratos (NO₂/NO₃); las desnitrificantes devuelven el nitrógeno como N₂ gaseoso a la atmósfera.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Cuál es la diferencia entre saprobionte y necrófago?</div>
+        <div class="a">El saprobionte (hongos, bacterias) desintegra materia orgánica muerta a nivel celular; el necrófago (buitres, lombrices) es un carroñero que consume cadáveres directamente.</div>
+      </div>
+      <div class="quiz-card">
+        <div class="q">¿Qué establece el Protocolo de Montreal?</div>
+        <div class="a">La prohibición de sustancias que agotan la capa de ozono, como los CFC usados en aerosoles y refrigerantes.</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<a href="#" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+
+<script>
+  const totop = document.getElementById('totop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) totop.classList.add('show');
+    else totop.classList.remove('show');
+  });
+  totop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({top:0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  });
+
+  // Explicit smooth-scroll for sidebar nav (more reliable than native anchor jump
+  // inside embedded/iframed contexts).
+  document.querySelectorAll('.toc a[data-target]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('data-target');
+      const target = document.getElementById(id);
+      if (target) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
